@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/MeMager.dir/main.c.o CMakeFiles/MeMager.dir/memager.c.o CMakeFiles/MeMager.dir/memager_tester.c.o CMakeFiles/MeMager.dir/benchmark.c.o -o MeMager 
