@@ -13,6 +13,5 @@ int main(int argc, char** argv)
     std::cout << "Philosophers added. Starting dinner...\n";
     //30 - a period of time for dinner
     start_dinner(30);
-
     return 0;
 }
