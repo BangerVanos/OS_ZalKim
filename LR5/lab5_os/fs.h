@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <string.h>
 
 #define BLOCK_SIZE 4096
 #define CODE_SUCCESS 0
@@ -23,9 +24,8 @@ struct Block{
     char *data = new char[BLOCK_SIZE];
     bool is_empty = true;
     Block();    
-    Block(const Block& ref_block);
-    ~Block();
-    Block operator=(const Block& ref_block);
+    Block(const Block& ref_block);    
+    Block& operator=(const Block& ref_block);
 };
 
 /*
@@ -38,7 +38,8 @@ public:
     std::string file_name;
     uint32_t start_block_index;
     uint16_t block_amount;
-    File(std::string file_name, uint32_t start_block_index, uint16_t block_amount);    
+    File(std::string file_name, uint32_t start_block_index, uint16_t block_amount);
+    File(const File& ref_file);
     bool operator ==(const File& ref_file);
 };
 
@@ -50,8 +51,7 @@ public:
     Block* blocks = nullptr;
     std::vector<File> files;
     Disk();
-    Disk(uint32_t size);
-    ~Disk();
+    Disk(uint32_t size);    
 };
 
 /*
@@ -69,9 +69,9 @@ to use in disk
 class FileSystem{
 public:
     Disk* disk = nullptr;
+    uint32_t disk_block_amount;
     FileSystem();
-    FileSystem(uint32_t disk_size);
-    ~FileSystem();
+    FileSystem(uint32_t disk_size);    
     int fcreate(std::string file_name, uint32_t size, std::string data);
     int fdelete(std::string file_name);
     int fchange(std::string file_name, std::string new_data);
